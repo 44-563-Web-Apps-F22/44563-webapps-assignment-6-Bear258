@@ -2,69 +2,93 @@
 <html>
 <head>
     <title>Welcome to JavaScript</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"   
+      integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" 
+      integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous"></script>
 </head>
 <body>
     <h1>Musician guess by Swarnalatha Yadla</h1>
 <h2>Getting input</h2>
 
 <form>
-    <label for="form1_age">What is your age </label>
-    <input type ="number" id="form1_age" name="form1_age" min=10 max=50 step=2 value=30> <br>
+    <label for="MusicianName">Enter the secret musician name </label>
+    <input type ="password" id="MusicianName" name="MusicianName" value="John Lennon"> <br>
 
-    <label for="form1_nick">What is your nickname </label>
-    <input type ="text" id="form1_nick" name="form1_nick" autofocus> <br>
+    <label for="guessName">Guess the musician</label>
+    <input type ="text" id="guessName" name="guessName" autofocus> <br>
 
-    <input type="button" onclick="resolveForm()" value="Get values from form">
+    <input type="button" onclick="checkGuess();endoftheGame()" value="check the guess">
 </form>
 
-<p id="result">This text will be replaced </p>
+<p id="result">Checking the count of Correct & Wrong answers </p>
 
 <script> 
 
-function resolveForm (){
-    console.log("Getting form values")
-    age = document.getElementById("form1_age").value
-    nick = document.getElementById("form1_nick").value
-    confirmed = confirm("Are these the values? "+age+" and "+nick)
+    var correct = 0
+    var wrong = 0
     
-    out = document.getElementById("result")
-    if(confirmed){
-        out.innerHTML = "Values were confirmed"
-    } else {
-        out.innerHTML = "Values were not confirmed"
-    }
-}
-</script>
-<!-- Part 3 : Create the input form and build the response code. -->
-<form>
-    <label for="form2_musician">Enter the secret musician name</label>
-    <input type="password" id="form2_musician" name="form2_musician" min=10 max=50 step=2 value="John Lennon"><br>
-
-    <label for="form2_guess">Guess the musician</label>
-    <input type="text" id="form2_guess" name="form2_guess" min=10 max=50 step=2><br>
-
-    <input type="button" onclick="checkGuess()" value="Check the guess">
-</form>
-
-<p id="results"></p>
-
-<script>
-    let correct=0
-    let wrong=0
-    function checkGuess() {
-        secret = document.getElementById("form2_musician").value
-        guess = document.getElementById("form2_guess").value
-    
-        result = document.getElementById("results")
-        if(secret == guess){
-            alert("You got it right");
-            correct+=1
+    function checkGuess(){
+        console.log("Getting form values")
+        name = document.getElementById("MusicianName").value
+        guess = document.getElementById("guessName").value
+        
+        if(name === guess){
+            correct = correct + 1
+            alert("You got it right")
+            
         } else {
-            alert("Wrong Musician");
-            wrong+=1
+            wrong = wrong + 1 
+            alert("wrong musician")
+    
         }
-        document.getElementById("results").innerHTML = "Correct guesses are " + correct + " and Wrong guesses are " + wrong
+        document.getElementById("result").innerHTML = "wrong guess :" + wrong + "\n correct guess :" + correct
     }
-</script>
-</body>
-</html>
+    </script>
+    <div style="padding: 75px 75px"><img src="Ant.jpg" id="bird" height="100px" width="100px" onclick="swapImage()"></div>
+        <script>
+        var useImage=1;
+        function swapImage(){
+            switch(useImage){
+                case 1:
+                    document.getElementById("bird").src="Ant.jpg"
+                    useImage=2;
+                break;
+                case 2:
+                    document.getElementById("bird").src="Diplura.jpg"
+                    useImage=3;
+                break;
+                case 3:
+                    document.getElementById("bird").src="YellowJacket.jpg"
+                    useImage=1;
+                break;
+                }
+            }
+        </script>
+<script>
+    function endoftheGame()
+    {
+        
+        while (wrong==3) {
+            if (wrong >=3) {
+                wrong -= 4
+                alert("Sorry, game over.")
+            }
+            else {
+                alert("You got it right")
+                document.getElementById("result").innerHTML = "Correct count:" + correct + " " + "Wrong count:" + wrong
+            }
+       
+            }
+
+        }
+    
+    </script>
+
+    </body>
+    </html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Vacation Tour</title>
+        <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"   
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script> 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" 
+    integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous"></script>
+    </head>
+ 
+<body>
+<h1>Swarnalatha Yadla Selects a Vacation Tour</h1>
+
+<div class="container">
+    <form>
+       
+        <input type="checkbox" id="air" name="vacation" value="true">
+        <label for="air">Would you like to Travel by Air</label> <br>
+     
+        <input type="checkbox" id="domestic" name="vacation" value="true">
+        <label for="domestic">Would you like to Travel Domestic</label> <br>
+    
+        <input type="checkbox" id="resort" name="vacation" value="false">
+        <label for="resort">Wolud you like to select a Resort</label> <br>
+    
+        <input type="button" class="btn btn-warning" value="Select a vacation" onclick="selectVacation()">
+    
+    </form>
+    <br>
+    <form>
+        <label for="city">Enter a city</label>
+        <input type="text" id="city" name="city" value="city"> <br>
+        
+        <label for="city">Enter price</label>
+        <input type="text" id="price" name="price"> <br>
+    
+        <input type="button" class="btn btn-warning" value="Update the vacation" onclick="updateVacation()">
+    </form>
+    
+    
+    
+    <p id="result">This text will be replaced </p>
+    </div>
+    </div>
+    <script> 
+    var my_vacation={};
+    function selectVacation()
+    {
+        my_vacation={};
+        let airtravel=document.getElementById("air").checked
+        let domestictravel=document.getElementById("domestic").checked
+        let resorttravel=document.getElementById("resort").checked
+    
+        if(airtravel){my_vacation.air=true;}
+        else{my_vacation.air=false;}
+        if(domestictravel){my_vacation.domestic=true;}
+        else{my_vacation.domestic=false;}
+        if(resorttravel){my_vacation.resort=true;}
+        else{my_vacation.resort=false;}
+        document.getElementById("result").innerHTML=JSON.stringify(my_vacation)
+    }
+        function updateVacation()
+    {
+        let city=document.getElementById("city").value;
+        let price=document.getElementById("price").value;
+        my_vacation["city"]=city;
+        my_vacation["price"]=price;
+    
+        document.getElementById("result").innerHTML=JSON.stringify(my_vacation)
+    }
+    
+    </script>
+
+</body>
+</html>
